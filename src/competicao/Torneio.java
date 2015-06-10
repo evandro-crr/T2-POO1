@@ -1,6 +1,5 @@
 package competicao;
 
-<<<<<<< HEAD
 import java.util.Arrays;
 
 public class Torneio {
@@ -13,18 +12,6 @@ public class Torneio {
 
 	Competidor vencedor = combates(competidores);
 
-=======
-public class Torneio {
-
-	Competidor[] competidores = new Competidor[4];
-	Competidor vencedor;
-
-	public Torneio(Competidor[] competidores, Competidor vencedor) {
-		this.competidores = competidores;
-		this.vencedor = vencedor;
-	}
-
->>>>>>> 0c58c5bb0bd9615f6f58d95f5b81ac104b7f2a31
 	public Competidor[] getCompetidores() {
 		return competidores;
 	}
@@ -41,7 +28,6 @@ public class Torneio {
 		this.vencedor = vencedor;
 	}
 
-<<<<<<< HEAD
 	public Competidor combates(Competidor[] competidores) {
 
 		if (competidores.length == 2)
@@ -59,21 +45,4 @@ public class Torneio {
 
 	}
 
-=======
-	public void iniciaTorneio() {
-		// luta entre [0] e [1]
-
-		// luta entre [2] e [3]
-
-		// luta entre ganhadorLuta1 e ganhadorLuta2
-
-		// vencedor = ganhadorLuta3
-	}
-
-	public void iniciaLuta(Competidor a, Competidor b) {
-		// trocar void por Competidor quando decidir o funcionamento do metodo
-
-		// return ganhador;
-	}
->>>>>>> 0c58c5bb0bd9615f6f58d95f5b81ac104b7f2a31
 }
