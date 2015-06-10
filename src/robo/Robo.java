@@ -6,11 +6,23 @@ public class Robo {
 	private Perna perna;
 	private Torso torso;
 
-	public Robo(Braco braco, Perna perna, Torso torso) {
-		super();
+	private double HP;
+	private String nome;
+
+	public Robo(String nome, Braco braco, Perna perna, Torso torso) {
+		this.nome = nome;
 		this.braco = braco;
 		this.perna = perna;
 		this.torso = torso;
+		HP = torso.getHP();
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
 	public int getATK() {
@@ -25,8 +37,16 @@ public class Robo {
 		return perna.getAGL();
 	}
 
-	public int getHP() {
-		return torso.getHP();
+	public double getHP() {
+		return HP;
+	}
+
+	public void setHP(double hP) {
+		HP = hP;
+	}
+
+	public void perdeHP(double hP) {
+		HP -= hP;
 	}
 
 	public Braco getBraco() {
