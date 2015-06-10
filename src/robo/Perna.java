@@ -1,13 +1,13 @@
 package robo;
 
 public class Perna extends Peca {
-	
+
+	private int AGL;
+
 	public Perna(String nome, int dEF, int aGL) {
 		super(nome, dEF);
 		AGL = aGL;
 	}
-
-	private int AGL;
 
 	public int getAGL() {
 		return AGL;
@@ -16,7 +16,5 @@ public class Perna extends Peca {
 	public void setAGL(int aGL) {
 		AGL = aGL;
 	}
-
-
 
 }

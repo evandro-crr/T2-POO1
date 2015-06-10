@@ -6,8 +6,8 @@ public class Robo {
 	private Perna perna;
 	private Torso torso;
 
-	private double HP;
 	private String nome;
+	private double HP;
 
 	public Robo(String nome, Braco braco, Perna perna, Torso torso) {
 		this.nome = nome;
@@ -17,6 +17,7 @@ public class Robo {
 		HP = torso.getHP();
 	}
 
+	// Métodos Robô
 	public String getNome() {
 		return nome;
 	}
@@ -37,18 +38,11 @@ public class Robo {
 		return perna.getAGL();
 	}
 
-	public double getHP() {
-		return HP;
+	public void perdeHP(double dano) {
+		HP -= dano;
 	}
 
-	public void setHP(double hP) {
-		HP = hP;
-	}
-
-	public void perdeHP(double hP) {
-		HP -= hP;
-	}
-
+	// Métodos Braço
 	public Braco getBraco() {
 		return braco;
 	}
@@ -57,6 +51,7 @@ public class Robo {
 		this.braco = braco;
 	}
 
+	// Métodos Perna
 	public Perna getPerna() {
 		return perna;
 	}
@@ -65,6 +60,7 @@ public class Robo {
 		this.perna = perna;
 	}
 
+	// Métodos Torso
 	public Torso getTorso() {
 		return torso;
 	}
@@ -73,4 +69,11 @@ public class Robo {
 		this.torso = torso;
 	}
 
+	public double getHP() {
+		return HP;
+	}
+
+	public void setHP(double hP) {
+		HP = hP;
+	}
 }
