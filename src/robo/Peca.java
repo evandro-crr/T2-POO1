@@ -3,12 +3,12 @@ package robo;
 public class Peca {
 
 	private String nome;
-	private int DEF;
+	private int def;
 
-	public Peca(String nome, int dEF) {
+	public Peca(String nome, int _def) {
 		super();
 		this.nome = nome;
-		DEF = dEF;
+		def = _def;
 	}
 
 	public String getNome() {
@@ -19,12 +19,12 @@ public class Peca {
 		this.nome = nome;
 	}
 
-	public int getDEF() {
-		return DEF;
+	public int getDef() {
+		return def;
 	}
 
-	public void setDEF(int dEF) {
-		DEF = dEF;
+	public void setDEF(int _def) {
+		def = _def;
 	}
 
 }
