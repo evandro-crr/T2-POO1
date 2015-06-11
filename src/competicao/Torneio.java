@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public class Torneio {
 
-	Competidor[] competidores = new Competidor[4];
+	Competidor[] competidores;
 
 	public Torneio(Competidor[] competidores, Competidor vencedor) {
 		this.competidores = competidores;
@@ -32,6 +32,8 @@ public class Torneio {
 
 		if (competidores.length == 2)
 			return Combate.luta(competidores[0], competidores[1]);
+		else if (competidores.length == 1)
+			return competidores[0];
 
 		Competidor[] a = Arrays.copyOfRange(competidores, 0,
 				competidores.length / 2);
