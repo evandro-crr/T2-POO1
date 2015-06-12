@@ -9,6 +9,8 @@ public class Robo {
 	private String nome;
 	private double HP;
 
+	public String log;
+
 	public Robo(String nome, Braco braco, Perna perna, Torso torso) {
 		this.nome = nome;
 		this.braco = braco;
@@ -17,7 +19,7 @@ public class Robo {
 		HP = torso.getHP();
 	}
 
-	// Métodos Robô
+	// Mï¿½todos Robï¿½
 	public String getNome() {
 		return nome;
 	}
@@ -42,7 +44,7 @@ public class Robo {
 		HP -= dano;
 	}
 
-	// Métodos Braço
+	// Mï¿½todos Braï¿½o
 	public Braco getBraco() {
 		return braco;
 	}
@@ -51,7 +53,7 @@ public class Robo {
 		this.braco = braco;
 	}
 
-	// Métodos Perna
+	// Mï¿½todos Perna
 	public Perna getPerna() {
 		return perna;
 	}
@@ -60,7 +62,7 @@ public class Robo {
 		this.perna = perna;
 	}
 
-	// Métodos Torso
+	// Mï¿½todos Torso
 	public Torso getTorso() {
 		return torso;
 	}
