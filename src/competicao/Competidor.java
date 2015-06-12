@@ -12,6 +12,8 @@ public class Competidor {
 		this.robo = robo;
 	}
 
+	public String log = "";
+
 	public String getNome() {
 		return nome;
 	}

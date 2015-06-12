@@ -1,6 +1,5 @@
 package teste;
 
-import competicao.Combate;
 import competicao.Competidor;
 import competicao.Torneio;
 
@@ -18,10 +17,13 @@ public class TesteMain {
 
 	public static void main(String[] args) {
 
+		Torneio cadastro = new Torneio(interacao.UI.cadastrarCompetidores());
+		cadastro.setVencedor();
+
 		torneio.setVencedor();
 
-		System.out.println(torneio.getVencedor().getNome());
+		System.out.println(cadastro.getVencedor().getNome());
+		System.out.println(cadastro.getVencedor().log);
 
 	}
-
 }

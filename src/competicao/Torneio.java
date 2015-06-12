@@ -12,6 +12,14 @@ public class Torneio {
 
 	Competidor vencedor;
 
+	public String[] getNomes() {
+		String[] nomes = new String[competidores.length];
+		for (int i = 0; i < competidores.length; i++) {
+			nomes[i] = competidores[i].getNome();
+		}
+		return nomes;
+	}
+
 	public Competidor[] getCompetidores() {
 		return competidores;
 	}
@@ -31,11 +39,20 @@ public class Torneio {
 	public Competidor combates(Competidor[] competidores) {
 
 		if (competidores.length == 2) {
-			System.out.println(competidores[0].getNome() + " vs. "
-					+ competidores[1].getNome());
+
+			competidores[0].log += competidores[0].getNome() + " vs. "
+					+ competidores[1].getNome() + "\n";
+
+			competidores[1].log += competidores[0].getNome() + " vs. "
+					+ competidores[1].getNome() + "\n";
+
 			return Combate.luta(competidores[0], competidores[1]);
+
 		} else if (competidores.length == 1) {
-			System.out.println(competidores[0].getNome() + " pulou uma rodada");
+
+			competidores[0].log += competidores[0].getNome()
+					+ " pulou uma rodada\n";
+
 			return competidores[0];
 		}
 
@@ -48,9 +65,10 @@ public class Torneio {
 		Competidor aG = combates(a);
 		Competidor bG = combates(b);
 
-		System.out.println(aG.getNome() + " vs. " + bG.getNome());
+		aG.log += aG.getNome() + " vs. " + bG.getNome() + "\n";
+		bG.log += aG.getNome() + " vs. " + bG.getNome() + "\n";
+
 		return Combate.luta(aG, bG);
 
 	}
-
 }

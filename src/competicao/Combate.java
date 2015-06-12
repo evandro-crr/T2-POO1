@@ -10,10 +10,13 @@ public class Combate {
 
 		boolean r = ram.nextBoolean();
 
-		if (r == true)
+		if (r == true) {
+			a.log += a.getNome() + " Ganhou\n";
 			return a;
-		else
+		} else {
+			b.log += b.getNome() + " Ganhou\n";
 			return b;
+		}
 	}
 
 	// Classe que cont�m as opera��es e vari�veis de cada luta

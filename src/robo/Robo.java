@@ -9,8 +9,6 @@ public class Robo {
 	private String nome;
 	private double HP;
 
-	public String log;
-
 	public Robo(String nome, Braco braco, Perna perna, Torso torso) {
 		this.nome = nome;
 		this.braco = braco;
