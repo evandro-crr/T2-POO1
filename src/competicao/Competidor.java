@@ -5,14 +5,22 @@ import robo.Robo;
 public class Competidor {
 
 	private String nome;
-	private robo.Robo robo;
+	private robo.Robo competidorRrobo;
+
+	public String log = "";
 
 	public Competidor(String nome, Robo robo) {
 		this.nome = nome;
-		this.robo = robo;
+		this.competidorRrobo = robo;
+		log = "Robo: " + competidorRrobo.getNome() + "\n| Braço: "
+				+ competidorRrobo.getBraco().getNome() + "\n| Perna: "
+				+ competidorRrobo.getPerna().getNome() + "\n| Torso: "
+				+ competidorRrobo.getTorso().getNome() + "\nHP: "
+				+ competidorRrobo.getHP() + "\nATK: "
+				+ competidorRrobo.getATK() + "\nDEF: "
+				+ competidorRrobo.getDEF() + "\nAGL: "
+				+ competidorRrobo.getAGL() + "\n\n";
 	}
-
-	public String log = "";
 
 	public String getNome() {
 		return nome;
@@ -23,11 +31,11 @@ public class Competidor {
 	}
 
 	public robo.Robo getRobo() {
-		return robo;
+		return competidorRrobo;
 	}
 
 	public void setRobo(robo.Robo robo) {
-		this.robo = robo;
+		this.competidorRrobo = robo;
 	}
 
 }

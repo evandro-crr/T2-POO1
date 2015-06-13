@@ -5,12 +5,15 @@ import java.util.Arrays;
 public class Torneio {
 
 	Competidor[] competidores;
+	Competidor vencedor;
+
+	public static String log = "";
 
 	public Torneio(Competidor[] competidores) {
 		this.competidores = competidores;
-	}
 
-	Competidor vencedor;
+		vencedor = combates(competidores);
+	}
 
 	public String[] getNomes() {
 		String[] nomes = new String[competidores.length];
@@ -32,13 +35,12 @@ public class Torneio {
 		return vencedor;
 	}
 
-	public void setVencedor() {
-		this.vencedor = combates(competidores);
-	}
-
 	public Competidor combates(Competidor[] competidores) {
 
 		if (competidores.length == 2) {
+
+			log += competidores[0].getNome() + " vs. "
+					+ competidores[1].getNome() + "\n";
 
 			competidores[0].log += competidores[0].getNome() + " vs. "
 					+ competidores[1].getNome() + "\n";
@@ -50,6 +52,7 @@ public class Torneio {
 
 		} else if (competidores.length == 1) {
 
+			log += competidores[0].getNome() + " pulou uma rodada\n";
 			competidores[0].log += competidores[0].getNome()
 					+ " pulou uma rodada\n";
 
@@ -65,6 +68,7 @@ public class Torneio {
 		Competidor aG = combates(a);
 		Competidor bG = combates(b);
 
+		log += aG.getNome() + " vs. " + bG.getNome() + "\n";
 		aG.log += aG.getNome() + " vs. " + bG.getNome() + "\n";
 		bG.log += aG.getNome() + " vs. " + bG.getNome() + "\n";
 

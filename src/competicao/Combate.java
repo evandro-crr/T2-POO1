@@ -11,10 +11,15 @@ public class Combate {
 		boolean r = ram.nextBoolean();
 
 		if (r == true) {
+
+			Torneio.log += a.getNome() + " Ganhou\n";
+			b.log += b.getNome() + " Perdeu\n";
 			a.log += a.getNome() + " Ganhou\n";
 			return a;
 		} else {
+			Torneio.log += b.getNome() + " Ganhou\n";
 			b.log += b.getNome() + " Ganhou\n";
+			a.log += a.getNome() + " Perdeu\n";
 			return b;
 		}
 	}

@@ -4,6 +4,7 @@ import javax.swing.JOptionPane;
 
 import robo.Robo;
 import competicao.Competidor;
+import competicao.Torneio;
 
 public class UI {
 
@@ -38,6 +39,27 @@ public class UI {
 				robo.Prefab.pernaLog, robo.Prefab.pernaOps)],
 				robo.Prefab.torso[ops(robo.Prefab.torsoLog,
 						robo.Prefab.torsoOps)]);
+	}
+
+	public static boolean menu(boolean continuar, Torneio torneio) {
+		String[] l1 = { "Relatorio Geral", "Relatorio Individual", "Sair" };
+		int n1 = ops("Relatorio: " + torneio.getVencedor().getNome()
+				+ " Venceu o torneio", l1);
+		switch (n1) {
+		case 0:
+			JOptionPane.showMessageDialog(null, Torneio.log);
+			break;
+		case 1:
+			JOptionPane.showMessageDialog(
+					null,
+					torneio.getCompetidores()[ops("Competidor",
+							torneio.getNomes())].log);
+			break;
+		case 2:
+			continuar = false;
+			break;
+		}
+		return continuar;
 	}
 
 	public static int numeroPositivo(String string) {
