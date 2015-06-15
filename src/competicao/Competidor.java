@@ -12,7 +12,7 @@ public class Competidor {
 	public Competidor(String nome, Robo robo) {
 		this.nome = nome;
 		this.competidorRrobo = robo;
-		log = "Robo: " + competidorRrobo.getNome() + "\n| Braço: "
+		log = nome+"\nRobo: " + competidorRrobo.getNome() + "\n| Braço: "
 				+ competidorRrobo.getBraco().getNome() + "\n| Perna: "
 				+ competidorRrobo.getPerna().getNome() + "\n| Torso: "
 				+ competidorRrobo.getTorso().getNome() + "\nHP: "

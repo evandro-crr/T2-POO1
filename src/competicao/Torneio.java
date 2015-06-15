@@ -43,18 +43,24 @@ public class Torneio {
 					+ competidores[1].getNome() + "\n";
 
 			competidores[0].log += competidores[0].getNome() + " vs. "
-					+ competidores[1].getNome() + "\n";
+					+ competidores[1].getNome() + "\n"
+					+ competidores[0].getRobo().getNome() + " vs. "
+					+ competidores[1].getRobo().getNome()+ "\n";
+			;
 
 			competidores[1].log += competidores[0].getNome() + " vs. "
-					+ competidores[1].getNome() + "\n";
+					+ competidores[1].getNome() + "\n"
+					+ competidores[0].getRobo().getNome() + " vs. "
+					+ competidores[1].getRobo().getNome()+ "\n";
+			;
 
 			return Combate.luta(competidores[0], competidores[1]);
 
 		} else if (competidores.length == 1) {
 
-			log += competidores[0].getNome() + " pulou uma rodada\n";
+			log += competidores[0].getNome() + " pulou uma rodada\n\n";
 			competidores[0].log += competidores[0].getNome()
-					+ " pulou uma rodada\n";
+					+ " pulou uma rodada\n\n";
 
 			return competidores[0];
 		}
@@ -69,8 +75,13 @@ public class Torneio {
 		Competidor bG = combates(b);
 
 		log += aG.getNome() + " vs. " + bG.getNome() + "\n";
-		aG.log += aG.getNome() + " vs. " + bG.getNome() + "\n";
-		bG.log += aG.getNome() + " vs. " + bG.getNome() + "\n";
+		aG.log += aG.getNome() + " vs. " + bG.getNome() + "\n"
+				+ competidores[0].getRobo().getNome() + " vs. "
+				+ competidores[1].getRobo().getNome()+ "\n";
+
+		bG.log += aG.getNome() + " vs. " + bG.getNome() + "\n"
+				+ competidores[0].getRobo().getNome() + " vs. "
+				+ competidores[1].getRobo().getNome()+ "\n";
 
 		return Combate.luta(aG, bG);
 

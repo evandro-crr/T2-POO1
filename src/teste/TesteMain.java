@@ -18,11 +18,8 @@ public class TesteMain {
 
 		Torneio cadastro = new Torneio(competidores);
 		boolean continuar = true;
-
 		do {
 			continuar = UI.menu(continuar, cadastro);
-
 		} while (continuar);
-
 	}
 }

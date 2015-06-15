@@ -14,7 +14,7 @@ public class Prefab {
 			new Perna("Perna agil", 15, 25), new Perna("Perna forte", 25, 15) };
 
 	public static Torso[] torso = { new Torso("Torso padrão", 20, 50),
-			new Torso("Torso grande", 10, 80),
+			new Torso("Torso grande", 10, 60),
 			new Torso("Torso resistente", 30, 40) };
 
 	public static String bracoLog = braco[0].getNome() + "\nDEF: "
