@@ -8,23 +8,66 @@ public class Combate {
 
 	public static Competidor luta(Competidor a, Competidor b) {
 
-		boolean r = ram.nextBoolean();
+		boolean turno;
+		if (a.getRobo().getAGL() >= b.getRobo().getAGL())
+			turno = true;
+		else
+			turno = false;
 
-		if (r == true) {
+		do {
 
-			Torneio.log += a.getNome() + " Ganhou\n";
-			b.log += b.getNome() + " Perdeu\n";
-			a.log += a.getNome() + " Ganhou\n";
-			return a;
-		} else {
-			Torneio.log += b.getNome() + " Ganhou\n";
-			b.log += b.getNome() + " Ganhou\n";
-			a.log += a.getNome() + " Perdeu\n";
+			if (turno == true) {
+				if (esquiva(a, b)) {
+					b.log += "| " + b.getRobo().getNome() + ": recebeu "
+							+ dano(a, b) + " pontos de dano\n";
+					a.log += "| " + b.getRobo().getNome() + ": recebeu "
+							+ dano(a, b) + " pontos de dano\n";
+					b.getRobo().perdeHP(dano(a, b));
+				} else {
+					b.log += "| "+b.getRobo().getNome() + " esquivou \n";
+					a.log += "| "+b.getRobo().getNome() + " esquivou \n";
+				}
+
+				turno = false;
+			} else if (turno == false) {
+				if (esquiva(b, a)) {
+					a.log += "| " + a.getRobo().getNome() + ": recebeu "
+							+ dano(b, a) + " pontos de dano\n";
+					b.log += "| " + a.getRobo().getNome() + ": recebeu "
+							+ dano(b, a) + " pontos de dano\n";
+					b.getRobo().perdeHP(dano(b, a));
+				} else {
+					b.log += "| "+a.getRobo().getNome() + " esquivou \n";
+					a.log += "| "+a.getRobo().getNome() + " esquivou \n";
+				}
+				turno = true;
+			}
+
+		} while (a.getRobo().getHP() > 0 && b.getRobo().getHP() > 0);
+
+		if (a.getRobo().getHP() <= 0) {
+			b.log += b.getNome() + " ganhou de " + a.getNome() + "\n";
+			a.log += a.getNome() + ": robo destruido\n";
+			b.getRobo().setHP(b.getRobo().getTorso().getHP());
 			return b;
+
+		} else {
+			a.log += a.getNome() + " ganhou de " + b.getNome() + "\n";
+			b.log += b.getNome() + ": robo destruido\n";
+			a.getRobo().setHP(a.getRobo().getTorso().getHP());
+			return a;
 		}
+
 	}
 
-	// Classe que cont�m as opera��es e vari�veis de cada luta
-	// Inserir algoritmos para calculo do vencedor
+	private static boolean esquiva(Competidor ataque, Competidor defesa) {
+		return (((100 / defesa.getRobo().getAGL()) * ataque.getRobo().getAGL()) / 2) > ram
+				.nextInt(101);
+	}
+
+	private static double dano(Competidor ataque, Competidor defesa) {
+		return ataque.getRobo().getATK()
+				* (1 - (defesa.getRobo().getDEF() / 100));
+	}
 
 }
