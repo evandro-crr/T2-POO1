@@ -2,19 +2,19 @@ package robo;
 
 public class Torso extends Peca {
 
-	private int HP;
+	private int hp;
 
-	public Torso(String nome, int dEF, int hP) {
-		super(nome, dEF);
-		HP = hP;
+	public Torso(String nome, int def, int hp) {
+		super(nome, def);
+		this.hp = hp;
 	}
 
 	public int getHP() {
-		return HP;
+		return hp;
 	}
 
 	public void setHP(int hP) {
-		HP = hP;
+		hp = hP;
 	}
 
 }

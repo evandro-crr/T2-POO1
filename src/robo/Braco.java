@@ -2,19 +2,19 @@ package robo;
 
 public class Braco extends Peca {
 
-	private int ATK;
-
-	public int getATK() {
-		return ATK;
-	}
-
-	public void setATK(int aTK) {
-		ATK = aTK;
-	}
+	private int atk;
 
 	public Braco(String nome, int dEF, int aTK) {
 		super(nome, dEF);
-		ATK = aTK;
+		atk = aTK;
+	}
+
+	public int getATK() {
+		return atk;
+	}
+
+	public void setATK(int atk) {
+		this.atk = atk;
 	}
 
 }

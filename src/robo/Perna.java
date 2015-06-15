@@ -2,19 +2,19 @@ package robo;
 
 public class Perna extends Peca {
 
-	private int AGL;
+	private int agl;
 
-	public Perna(String nome, int dEF, int aGL) {
-		super(nome, dEF);
-		AGL = aGL;
+	public Perna(String nome, int def, int agl) {
+		super(nome, def);
+		this.agl = agl;
 	}
 
 	public int getAGL() {
-		return AGL;
+		return agl;
 	}
 
 	public void setAGL(int aGL) {
-		AGL = aGL;
+		agl = aGL;
 	}
 
 }

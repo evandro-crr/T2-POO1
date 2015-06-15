@@ -7,14 +7,14 @@ public class Robo {
 	private Torso torso;
 
 	private String nome;
-	private double HP;
+	private double hp;
 
 	public Robo(String nome, Braco braco, Perna perna, Torso torso) {
 		this.nome = nome;
 		this.braco = braco;
 		this.perna = perna;
 		this.torso = torso;
-		HP = torso.getHP();
+		hp = torso.getHP();
 	}
 
 	// M�todos Rob�
@@ -39,7 +39,7 @@ public class Robo {
 	}
 
 	public void perdeHP(double dano) {
-		HP -= dano;
+		hp -= dano;
 	}
 
 	// M�todos Bra�o
@@ -70,10 +70,10 @@ public class Robo {
 	}
 
 	public double getHP() {
-		return HP;
+		return hp;
 	}
 
 	public void setHP(double hP) {
-		HP = hP;
+		hp = hP;
 	}
 }
