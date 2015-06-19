@@ -13,8 +13,4 @@ public class Perna extends Peca {
 		return agl;
 	}
 
-	public void setAGL(int aGL) {
-		agl = aGL;
-	}
-
 }

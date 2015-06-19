@@ -5,37 +5,38 @@ import robo.Robo;
 public class Competidor {
 
 	private String nome;
-	private robo.Robo competidorRrobo;
+	private robo.Robo roboDoCompetidor;
 
-	public String log = "";
+	private String relatorio = "";
 
 	public Competidor(String nome, Robo robo) {
 		this.nome = nome;
-		this.competidorRrobo = robo;
-		log = nome+"\nRobo: " + competidorRrobo.getNome() + "\n| Braço: "
-				+ competidorRrobo.getBraco().getNome() + "\n| Perna: "
-				+ competidorRrobo.getPerna().getNome() + "\n| Torso: "
-				+ competidorRrobo.getTorso().getNome() + "\nHP: "
-				+ competidorRrobo.getHP() + "\nATK: "
-				+ competidorRrobo.getATK() + "\nDEF: "
-				+ competidorRrobo.getDEF() + "\nAGL: "
-				+ competidorRrobo.getAGL() + "\n\n";
+		roboDoCompetidor = robo;
+
+		relatorio = nome + "\nRobo: " + roboDoCompetidor.getNome()
+				+ "\n| Braço: " + roboDoCompetidor.getBraco().getNome()
+				+ "\n| Perna: " + roboDoCompetidor.getPerna().getNome()
+				+ "\n| Torso: " + roboDoCompetidor.getTorso().getNome()
+				+ "\nHP: " + roboDoCompetidor.getHP() + "\nATK: "
+				+ roboDoCompetidor.getATK() + "\nDEF: "
+				+ roboDoCompetidor.getDEF() + "\nAGL: "
+				+ roboDoCompetidor.getAGL() + "\n\n";
 	}
 
 	public String getNome() {
 		return nome;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
 	public robo.Robo getRobo() {
-		return competidorRrobo;
+		return roboDoCompetidor;
 	}
 
-	public void setRobo(robo.Robo robo) {
-		this.competidorRrobo = robo;
+	public String getRelatorio() {
+		return relatorio;
+	}
+
+	public void setRelatorio(String relatorio) {
+		this.relatorio += relatorio;
 	}
 
 }

@@ -17,13 +17,8 @@ public class Robo {
 		hp = torso.getHP();
 	}
 
-	// M�todos Rob�
 	public String getNome() {
 		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
 	}
 
 	public int getATK() {
@@ -42,38 +37,24 @@ public class Robo {
 		hp -= dano;
 	}
 
-	// M�todos Bra�o
 	public Braco getBraco() {
 		return braco;
 	}
 
-	public void setBraco(Braco braco) {
-		this.braco = braco;
-	}
-
-	// M�todos Perna
 	public Perna getPerna() {
 		return perna;
 	}
 
-	public void setPerna(Perna perna) {
-		this.perna = perna;
-	}
-
-	// M�todos Torso
 	public Torso getTorso() {
 		return torso;
-	}
-
-	public void setTorso(Torso torso) {
-		this.torso = torso;
 	}
 
 	public double getHP() {
 		return hp;
 	}
 
-	public void setHP(double hP) {
-		hp = hP;
+	public void setHP(double hp) {
+		this.hp = hp;
 	}
+
 }

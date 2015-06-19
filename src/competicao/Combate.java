@@ -4,12 +4,15 @@ import java.util.Random;
 
 public class Combate {
 
-	private static Random ram = new Random();
-
-	public static Competidor luta(Competidor a, Competidor b) {
+	private static Random random = new Random();
+	
+	
+	// Retorna o ganhador de uma luta
+	public static Competidor luta(Competidor competidor1, Competidor competidor2) {
 
 		boolean turno;
-		if (a.getRobo().getAGL() >= b.getRobo().getAGL())
+		// Define quem começa atacando
+		if (competidor1.getRobo().getAGL() >= competidor2.getRobo().getAGL())
 			turno = true;
 		else
 			turno = false;
@@ -17,64 +20,115 @@ public class Combate {
 		do {
 
 			if (turno == true) {
-				if (esquiva(a, b)) {
+				if (ataque(competidor1, competidor2)) {
 
-					b.log += "| " + b.getRobo().getNome() + ": recebeu "
-							+ dano(a, b) + " pontos de dano\n";
-					a.log += "| " + b.getRobo().getNome() + ": recebeu "
-							+ dano(a, b) + " pontos de dano\n";
-					b.getRobo().perdeHP(dano(a, b));
+					competidor2.setRelatorio("| "
+							+ competidor2.getRobo().getNome()
+							+ ": recebeu "
+							+ String.format("%.2f",
+									dano(competidor1, competidor2))
+							+ " pontos de dano\n");
+
+					competidor1.setRelatorio("| "
+							+ competidor2.getRobo().getNome()
+							+ ": recebeu "
+							+ String.format("%.2f",
+									dano(competidor1, competidor2))
+							+ " pontos de dano\n");
+
+					competidor2.getRobo().perdeHP(
+							dano(competidor1, competidor2));
+
 				} else {
-					b.log += "| " + b.getRobo().getNome() + " esquivou \n";
-					a.log += "| " + b.getRobo().getNome() + " esquivou \n";
+					competidor2.setRelatorio("| "
+							+ competidor2.getRobo().getNome() + " esquivou \n");
+
+					competidor1.setRelatorio("| "
+							+ competidor2.getRobo().getNome() + " esquivou \n");
 				}
 
 				turno = false;
 			} else if (turno == false) {
-				if (esquiva(b, a)) {
-					a.log += "| " + a.getRobo().getNome() + ": recebeu "
-							+ dano(b, a) + " pontos de dano\n";
-					b.log += "| " + a.getRobo().getNome() + ": recebeu "
-							+ dano(b, a) + " pontos de dano\n";
-					a.getRobo().perdeHP(dano(b, a));
+				if (ataque(competidor2, competidor1)) {
+
+					competidor1.setRelatorio("| "
+							+ competidor1.getRobo().getNome()
+							+ ": recebeu "
+							+ String.format("%.2f",
+									dano(competidor2, competidor1))
+							+ " pontos de dano\n");
+
+					competidor2.setRelatorio("| "
+							+ competidor1.getRobo().getNome()
+							+ ": recebeu "
+							+ String.format("%.2f",
+									dano(competidor2, competidor1))
+							+ " pontos de dano\n");
+
+					competidor1.getRobo().perdeHP(
+							dano(competidor2, competidor1));
+
 				} else {
-					b.log += "| " + a.getRobo().getNome() + " esquivou \n";
-					a.log += "| " + a.getRobo().getNome() + " esquivou \n";
+
+					competidor2.setRelatorio("| "
+							+ competidor1.getRobo().getNome() + " esquivou \n");
+
+					competidor1.setRelatorio("| "
+							+ competidor1.getRobo().getNome() + " esquivou \n");
+
 				}
 
 				turno = true;
+
 			}
 
-		} while (a.getRobo().getHP() > 0 && b.getRobo().getHP() > 0);
+		} while (competidor1.getRobo().getHP() > 0
+				&& competidor2.getRobo().getHP() > 0);
 
-		if (a.getRobo().getHP() <= 0) {
-			b.log += b.getNome() + " ganhou de " + a.getNome() + "\n\n";
-			a.log += a.getRobo().getNome() + " destruido\n\n";
-			b.getRobo().setHP(b.getRobo().getTorso().getHP());
-			Torneio.log += "-" + b.getNome() + " ganhou\n\n";
-			return b;
+		if (competidor1.getRobo().getHP() <= 0) {
 
-		} else if (b.getRobo().getHP() <= 0) {
-			a.log += a.getNome() + " ganhou de " + b.getNome() + "\n\n";
-			b.log += b.getRobo().getNome() + " destruido\n\n";
-			a.getRobo().setHP(a.getRobo().getTorso().getHP());
-			Torneio.log += "-" + a.getNome() + " ganhou\n\n";
-			return a;
+			competidor2.setRelatorio(competidor2.getNome() + " ganhou de "
+					+ competidor1.getNome() + "\n\n");
+
+			competidor1.setRelatorio(competidor1.getRobo().getNome()
+					+ " destruido\n\n");
+
+			competidor2.getRobo().setHP(
+					competidor2.getRobo().getTorso().getHP());
+
+			Torneio.setRelatorio("-" + competidor2.getNome() + " ganhou\n\n");
+			return competidor2;
+
+		} else if (competidor2.getRobo().getHP() <= 0) {
+
+			competidor1.setRelatorio(competidor1.getNome() + " ganhou de "
+					+ competidor2.getNome() + "\n\n");
+
+			competidor2.setRelatorio(competidor2.getRobo().getNome()
+					+ " destruido\n\n");
+
+			competidor1.getRobo().setHP(
+					competidor1.getRobo().getTorso().getHP());
+
+			Torneio.setRelatorio("-" + competidor1.getNome() + " ganhou\n\n");
+			return competidor1;
 		}
 
 		return null;
 
 	}
 
-	private static boolean esquiva(Competidor ataque, Competidor defesa) {
-		return (((100 / defesa.getRobo().getAGL()) * ataque.getRobo().getAGL()) / 2) >= ram
-				.nextInt(101);
+	// Define se robo esquiva
+	private static boolean ataque(Competidor atacante, Competidor defensor) {
+		return (((100 / defensor.getRobo().getAGL()) * atacante.getRobo()
+				.getAGL()) / 2) <= random.nextInt(101);
 
 	}
 
-	private static double dano(Competidor ataque, Competidor defesa) {
-		return ataque.getRobo().getATK()
-				* ((double) 1 - defesa.getRobo().getDEF() / 100);
+	// Define o dano calusado
+	private static double dano(Competidor atacante, Competidor defensor) {
+		return (double) atacante.getRobo().getATK()
+				* ((double) 1 - ((double) defensor.getRobo().getDEF() / 100));
 	}
 
 }

@@ -13,8 +13,4 @@ public class Torso extends Peca {
 		return hp;
 	}
 
-	public void setHP(int hP) {
-		hp = hP;
-	}
-
 }

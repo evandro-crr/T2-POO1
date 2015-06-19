@@ -1,6 +1,8 @@
 package interacao;
 
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 
 import robo.Robo;
 import competicao.Competidor;
@@ -10,22 +12,26 @@ public class UI {
 
 	public static Competidor[] cadastrarCompetidores() {
 
-		Competidor[] competidores = new Competidor[numeroPositivo("Numero de Competidores\na ser cadastrado")];
+		Competidor[] competidores = new Competidor[numeroDeCompetidores("Numero de Competidores\na ser cadastrado")];
+
 		String[] l1 = { "Escolher Peças", "Montar aleatorio" };
+
 		for (int i = 0; i < competidores.length; i++) {
+
 			String nome = JOptionPane.showInputDialog("Nome do Competidor:");
-			String nomeR = JOptionPane.showInputDialog("Nome do seu Robo");
+			String nomeDoRobo = JOptionPane.showInputDialog("Nome do seu Robo");
+
 			int s1 = opcoes("Peças", l1);
+
 			switch (s1) {
 			case 0:
-				competidores[i] = new Competidor(nome, cadastraRobo(nomeR));
-
+				competidores[i] = new Competidor(nome, cadastraRobo(nomeDoRobo));
 				break;
+
 			case 1:
 				competidores[i] = new Competidor(nome,
-						robo.Prefab.roboAleatorio(nomeR));
+						robo.Prefab.pecasAleatorias(nomeDoRobo));
 				break;
-
 			}
 		}
 
@@ -34,46 +40,65 @@ public class UI {
 	}
 
 	public static Robo cadastraRobo(String nome) {
-		return new Robo(nome, robo.Prefab.braco[opcoes(robo.Prefab.bracoLog,
-				robo.Prefab.bracoOps)], robo.Prefab.perna[opcoes(
-				robo.Prefab.pernaLog, robo.Prefab.pernaOps)],
-				robo.Prefab.torso[opcoes(robo.Prefab.torsoLog,
-						robo.Prefab.torsoOps)]);
+		return new Robo(nome, robo.Prefab.braco[opcoes(
+				robo.Prefab.bracoRelatorio, robo.Prefab.bracoOps)],
+				robo.Prefab.perna[opcoes(robo.Prefab.pernaRelatorio,
+						robo.Prefab.pernaOps)], robo.Prefab.torso[opcoes(
+						robo.Prefab.torsoRelatorio, robo.Prefab.torsoOps)]);
 	}
 
-	public static boolean menu(boolean continuar, Torneio torneio) {
+	public static boolean relatorios(boolean continuar, Torneio torneio) {
 		String[] l1 = { "Relatorio Geral", "Relatorio Individual", "Sair" };
-		int n1 = opcoes("Relatorio: " + torneio.getVencedor().getNome()
+
+		int s1 = opcoes("Relatorio: " + torneio.getVencedor().getNome()
 				+ " Venceu o torneio", l1);
-		switch (n1) {
+
+		switch (s1) {
 		case 0:
-			JOptionPane.showMessageDialog(null, Torneio.log);
+			JOptionPane.showMessageDialog(null, scroll(Torneio.getRelatorio()));
 			break;
+
 		case 1:
 			JOptionPane.showMessageDialog(
 					null,
-					torneio.getCompetidores()[opcoes("Competidor",
-							torneio.getNomes())].log);
+					scroll(torneio.getCompetidores()[opcoes("Competidor",
+							torneio.getNomes())].getRelatorio()));
 			break;
+
 		case 2:
 			continuar = false;
 			break;
 		}
+
 		return continuar;
+
 	}
 
-	public static int numeroPositivo(String string) {
+	public static int numeroDeCompetidores(String string) {
 		int n = Integer.parseInt(JOptionPane.showInputDialog(string));
+
 		if (n > 1)
 			return n;
 		else
-			return numeroPositivo(string);
+			return numeroDeCompetidores(string);
 	}
 
-	public static int opcoes(String string, String[] op) {
+	// Cria scroll para os relatorios
+	private static JScrollPane scroll(String string) {
+		JTextArea area = new JTextArea(string);
+		area.setRows(30);
+		area.setColumns(30);
+		area.setEditable(false);
+
+		return new JScrollPane(area);
+
+	}
+
+	// Cria janela com os botoes do relatorio
+	public static int opcoes(String string, String[] ops) {
 		return JOptionPane.showOptionDialog(null, string, null,
 				JOptionPane.INFORMATION_MESSAGE, JOptionPane.QUESTION_MESSAGE,
-				null, op, op[0]);
+				null, ops, ops[0]);
 	}
 
 }

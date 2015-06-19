@@ -7,7 +7,7 @@ public class Torneio {
 	Competidor[] competidores;
 	Competidor vencedor;
 
-	public static String log = "";
+	private static String relatorio = "";
 
 	public Torneio(Competidor[] competidores) {
 		this.competidores = competidores;
@@ -15,11 +15,14 @@ public class Torneio {
 		vencedor = combates(competidores);
 	}
 
+	// Nomes para IU.opcoes
 	public String[] getNomes() {
 		String[] nomes = new String[competidores.length];
+
 		for (int i = 0; i < competidores.length; i++) {
 			nomes[i] = competidores[i].getNome();
 		}
+
 		return nomes;
 	}
 
@@ -27,63 +30,76 @@ public class Torneio {
 		return competidores;
 	}
 
-	public void setCompetidores(Competidor[] competidores) {
-		this.competidores = competidores;
-	}
-
 	public Competidor getVencedor() {
 		return vencedor;
 	}
 
+	public static String getRelatorio() {
+		return relatorio;
+	}
+
+	public static void setRelatorio(String relatorio) {
+		Torneio.relatorio += relatorio;
+	}
+
+	// Realiza todos os combates
 	public Competidor combates(Competidor[] competidores) {
 
 		if (competidores.length == 2) {
 
-			log += competidores[0].getNome() + " vs. "
+			relatorio += competidores[0].getNome() + " vs. "
 					+ competidores[1].getNome() + "\n";
 
-			competidores[0].log += competidores[0].getNome() + " vs. "
+			competidores[0].setRelatorio(competidores[0].getNome() + " vs. "
 					+ competidores[1].getNome() + "\n"
 					+ competidores[0].getRobo().getNome() + " vs. "
-					+ competidores[1].getRobo().getNome()+ "\n";
+					+ competidores[1].getRobo().getNome() + "\n");
 			;
 
-			competidores[1].log += competidores[0].getNome() + " vs. "
+			competidores[1].setRelatorio(competidores[0].getNome() + " vs. "
 					+ competidores[1].getNome() + "\n"
 					+ competidores[0].getRobo().getNome() + " vs. "
-					+ competidores[1].getRobo().getNome()+ "\n";
+					+ competidores[1].getRobo().getNome() + "\n");
 			;
 
+			// Realiza luta
 			return Combate.luta(competidores[0], competidores[1]);
 
 		} else if (competidores.length == 1) {
 
-			log += competidores[0].getNome() + " pulou uma rodada\n\n";
-			competidores[0].log += competidores[0].getNome()
-					+ " pulou uma rodada\n\n";
+			relatorio += competidores[0].getNome() + " pulou uma rodada\n\n";
 
+			competidores[0].setRelatorio(competidores[0].getNome()
+					+ " pulou uma rodada\n\n");
+
+			// Não ha com quem lutar, pula uma rodada
 			return competidores[0];
 		}
 
-		Competidor[] a = Arrays.copyOfRange(competidores, 0,
+		Competidor[] competidoresDireita = Arrays.copyOfRange(competidores, 0,
 				competidores.length / 2);
 
-		Competidor[] b = Arrays.copyOfRange(competidores,
+		Competidor[] competidoresEsquerda = Arrays.copyOfRange(competidores,
 				(competidores.length / 2), competidores.length);
 
-		Competidor aG = combates(a);
-		Competidor bG = combates(b);
+		Competidor ganhadorDaDireita = combates(competidoresDireita);
+		Competidor ganhadorDaEsquerda = combates(competidoresEsquerda);
 
-		log += aG.getNome() + " vs. " + bG.getNome() + "\n";
-		aG.log += aG.getNome() + " vs. " + bG.getNome() + "\n"
+		relatorio += ganhadorDaDireita.getNome() + " vs. "
+				+ ganhadorDaEsquerda.getNome() + "\n";
+
+		ganhadorDaDireita.setRelatorio(ganhadorDaDireita.getNome() + " vs. "
+				+ ganhadorDaEsquerda.getNome() + "\n"
 				+ competidores[0].getRobo().getNome() + " vs. "
-				+ competidores[1].getRobo().getNome()+ "\n";
+				+ competidores[1].getRobo().getNome() + "\n");
 
-		bG.log += aG.getNome() + " vs. " + bG.getNome() + "\n"
+		ganhadorDaEsquerda.setRelatorio(ganhadorDaDireita.getNome() + " vs. "
+				+ ganhadorDaEsquerda.getNome() + "\n"
 				+ competidores[0].getRobo().getNome() + " vs. "
-				+ competidores[1].getRobo().getNome()+ "\n";
+				+ competidores[1].getRobo().getNome() + "\n");
 
-		return Combate.luta(aG, bG);
+		// Realiza a luta entre os semifinalistas
+		return Combate.luta(ganhadorDaDireita, ganhadorDaEsquerda);
 
 	}
 }

@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class Prefab {
 
-	private static Random ran = new Random();
+	private static Random random = new Random();
 
 	public static Braco[] braco = { new Braco("Braço padrão", 20, 20),
 			new Braco("Braço forte", 15, 25),
@@ -17,24 +17,26 @@ public class Prefab {
 			new Torso("Torso grande", 10, 60),
 			new Torso("Torso resistente", 30, 40) };
 
-	public static String bracoLog = braco[0].getNome() + "\nDEF: "
+	// Relatorios para a IU
+	public static String bracoRelatorio = braco[0].getNome() + "\nDEF: "
 			+ braco[0].getDEF() + "\nATK: " + braco[0].getATK() + "\n\n"
 			+ braco[1].getNome() + "\nDEF: " + braco[1].getDEF() + "\nATK: "
 			+ braco[1].getATK() + "\n\n" + braco[2].getNome() + "\nDEF: "
 			+ braco[2].getDEF() + "\nATK: " + braco[2].getATK() + "\n\n";
 
-	public static String pernaLog = perna[0].getNome() + "\nDEF: "
+	public static String pernaRelatorio = perna[0].getNome() + "\nDEF: "
 			+ perna[0].getDEF() + "\nAGL: " + perna[0].getAGL() + "\n\n"
 			+ perna[1].getNome() + "\nDEF: " + perna[1].getDEF() + "\nAGL: "
 			+ perna[1].getAGL() + "\n\n" + perna[2].getNome() + "\nDEF: "
 			+ perna[2].getDEF() + "\nAGL: " + perna[2].getAGL() + "\n\n";
 
-	public static String torsoLog = torso[0].getNome() + "\nDEF: "
+	public static String torsoRelatorio = torso[0].getNome() + "\nDEF: "
 			+ torso[0].getDEF() + "\nHP: " + torso[0].getHP() + "\n\n"
 			+ torso[1].getNome() + "\nDEF: " + torso[1].getDEF() + "\nHP: "
 			+ torso[1].getHP() + "\n\n" + torso[2].getNome() + "\nDEF: "
 			+ torso[2].getDEF() + "\nHP: " + torso[2].getHP() + "\n\n";
 
+	// Opções para a IU
 	public static String[] bracoOps = { braco[0].getNome(), braco[1].getNome(),
 			braco[2].getNome() };
 
@@ -43,9 +45,11 @@ public class Prefab {
 
 	public static String[] torsoOps = { torso[0].getNome(), torso[1].getNome(),
 			torso[2].getNome() };
-
-	public static Robo roboAleatorio(String nome) {
-		return new Robo(nome, braco[ran.nextInt(3)], perna[ran.nextInt(3)],
-				torso[ran.nextInt(3)]);
+	
+	
+	// Monta robo com peças aleatorias
+	public static Robo pecasAleatorias(String nome) {
+		return new Robo(nome, braco[random.nextInt(3)], perna[random.nextInt(3)],
+				torso[random.nextInt(3)]);
 	}
 }
