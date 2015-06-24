@@ -5,8 +5,7 @@ import java.util.Random;
 public class Combate {
 
 	private static Random random = new Random();
-	
-	
+
 	// Retorna o ganhador de uma luta
 	public static Competidor luta(Competidor competidor1, Competidor competidor2) {
 
@@ -22,19 +21,11 @@ public class Combate {
 			if (turno == true) {
 				if (ataque(competidor1, competidor2)) {
 
-					competidor2.setRelatorio("| "
-							+ competidor2.getRobo().getNome()
-							+ ": recebeu "
-							+ String.format("%.2f",
-									dano(competidor1, competidor2))
-							+ " pontos de dano\n");
+					competidor2.setRelatorio(relatorioDeAtaque(competidor1,
+							competidor2));
 
-					competidor1.setRelatorio("| "
-							+ competidor2.getRobo().getNome()
-							+ ": recebeu "
-							+ String.format("%.2f",
-									dano(competidor1, competidor2))
-							+ " pontos de dano\n");
+					competidor1.setRelatorio(relatorioDeAtaque(competidor1,
+							competidor2));
 
 					competidor2.getRobo().perdeHP(
 							dano(competidor1, competidor2));
@@ -51,19 +42,11 @@ public class Combate {
 			} else if (turno == false) {
 				if (ataque(competidor2, competidor1)) {
 
-					competidor1.setRelatorio("| "
-							+ competidor1.getRobo().getNome()
-							+ ": recebeu "
-							+ String.format("%.2f",
-									dano(competidor2, competidor1))
-							+ " pontos de dano\n");
+					competidor1.setRelatorio(relatorioDeAtaque(competidor2,
+							competidor1));
 
-					competidor2.setRelatorio("| "
-							+ competidor1.getRobo().getNome()
-							+ ": recebeu "
-							+ String.format("%.2f",
-									dano(competidor2, competidor1))
-							+ " pontos de dano\n");
+					competidor2.setRelatorio(relatorioDeAtaque(competidor2,
+							competidor1));
 
 					competidor1.getRobo().perdeHP(
 							dano(competidor2, competidor1));
@@ -118,17 +101,26 @@ public class Combate {
 
 	}
 
+	// Cria relatorio do dano recebido
+	private static String relatorioDeAtaque(Competidor atacante,
+			Competidor defensor) {
+		return "| " + defensor.getRobo().getNome() + ": recebeu "
+				+ String.format("%.2f", dano(atacante, defensor))
+				+ " pontos de dano\n";
+	}
+
 	// Define se robo esquiva
 	private static boolean ataque(Competidor atacante, Competidor defensor) {
 		return (((100 / defensor.getRobo().getAGL()) * atacante.getRobo()
-				.getAGL()) / 2) <= random.nextInt(101);
+				.getAGL()) / 2) <= random.nextInt(100);
 
 	}
 
 	// Define o dano calusado
 	private static double dano(Competidor atacante, Competidor defensor) {
-		return (double) atacante.getRobo().getATK()
-				* ((double) 1 - ((double) defensor.getRobo().getDEF() / 100));
+		return ((double) atacante.getRobo().getATK() * ((double) 1 - ((double) defensor
+				.getRobo().getDEF() / 100)))
+				* (0.5 + ((double) random.nextInt(7) / 10));
 	}
 
 }
