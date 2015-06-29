@@ -90,13 +90,13 @@ public class Torneio {
 
 		ganhadorDaDireita.setRelatorio(ganhadorDaDireita.getNome() + " vs. "
 				+ ganhadorDaEsquerda.getNome() + "\n"
-				+ competidores[0].getRobo().getNome() + " vs. "
-				+ competidores[1].getRobo().getNome() + "\n");
+				+ ganhadorDaDireita.getRobo().getNome() + " vs. "
+				+ ganhadorDaEsquerda.getRobo().getNome() + "\n");
 
 		ganhadorDaEsquerda.setRelatorio(ganhadorDaDireita.getNome() + " vs. "
 				+ ganhadorDaEsquerda.getNome() + "\n"
-				+ competidores[0].getRobo().getNome() + " vs. "
-				+ competidores[1].getRobo().getNome() + "\n");
+				+ ganhadorDaDireita.getRobo().getNome() + " vs. "
+				+ ganhadorDaEsquerda.getRobo().getNome() + "\n");
 
 		// Realiza a luta entre os semifinalistas
 		return Combate.luta(ganhadorDaDireita, ganhadorDaEsquerda);
