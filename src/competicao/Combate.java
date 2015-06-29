@@ -112,7 +112,7 @@ public class Combate {
 	// Define se robo esquiva
 	private static boolean ataque(Competidor atacante, Competidor defensor) {
 		return (((100 / defensor.getRobo().getAGL()) * atacante.getRobo()
-				.getAGL()) / 2) <= random.nextInt(100);
+				.getAGL()) / 2) >= random.nextInt(100);
 
 	}
 
